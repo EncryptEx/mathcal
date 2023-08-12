@@ -1,14 +1,13 @@
 <?php 
 
-$startDate = new DateTime('now');
-$daysOfLoop = 100;
+$date = new DateTime('now');
+$daysOfLoop = 1000;
 
 
-# for(DateTime $date = $startDate; $date.Date <= $endDate.Date; $date = $date:.date_add(1))
 for ($i=0; $i < $daysOfLoop; $i++) { 
 
     
-    $date = date_add($startDate, new DateInterval('P1D'));
+    $date = date_add($date, new DateInterval('P1D')); # Add 1 day
 
     $day = (int)($date->format('d'));
     $month = (int)($date->format('m'));
