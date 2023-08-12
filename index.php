@@ -14,24 +14,26 @@ function getMathDays(DateTime $start, int $iterationDays, bool $findOnlyFirst = 
         $month = (int)($date->format('m'));
         $year = (int)($date->format('y'));
 
+        $now = $date->format("l jS \of F Y");
+
         if ($day + $month == $year) {
-            echo $date->format("l jS \of F Y") . " is a mathematical day! --> " . $day . "+" . $month . "=" . $year . "\n";
+            echo $now . " is a mathematical day! --> " . $day . "+" . $month . "=" . $year . "\n";
             $endNow = true;
         }
         if (-$day + $month == $year) {
-            echo $date->format("l jS \of F Y") . " is a mathematical day! --> -" . $day . "+" . $month . "=" . $year . "\n";
+            echo $now . " is a mathematical day! --> -" . $day . "+" . $month . "=" . $year . "\n";
             $endNow = true;
         }
         if ($day - $month == $year) {
-            echo $date->format("l jS \of F Y") . " is a mathematical day! --> " . $day . "-" . $month . "=" . $year . "\n";
+            echo $now . " is a mathematical day! --> " . $day . "-" . $month . "=" . $year . "\n";
             $endNow = true;
         }
         if ($day * $month == $year) {
-            echo $date->format("l jS \of F Y") . " is a mathematical day! --> " . $day . "*" . $month . "=" . $year . "\n";
+            echo $now . " is a mathematical day! --> " . $day . "*" . $month . "=" . $year . "\n";
             $endNow = true;
         }
         if ($day / $month == $year) {
-            echo $date->format("l jS \of F Y") . " is a mathematical day! --> " . $day . "/" . $month . "=" . $year . "\n";
+            echo $now . " is a mathematical day! --> " . $day . "/" . $month . "=" . $year . "\n";
             $endNow = true;
         }
 
