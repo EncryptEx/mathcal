@@ -36,6 +36,36 @@ function getMathDays(DateTime $start, int $iterationDays, bool $findOnlyFirst = 
             echo $now . " is a mathematical day! --> " . $day . "/" . $month . "=" . $year . "\n";
             $endNow = true;
         }
+        if (pow($day,$month) == $year) {
+            echo $now . " is a mathematical day! --> " . $day . "^" . $month . "=" . $year . "\n";
+            $endNow = true;
+        }
+        if ($day*sqrt($month) == $year) {
+            echo $now . " is a mathematical day! --> " . $day . "√" . $month . "=" . $year . "\n";
+            $endNow = true;
+        }
+
+
+        if ($day == $month + $year) {
+            echo $now . " is a mathematical day! --> " . $day . "=" . $month . "+" . $year . "\n";
+            $endNow = true;
+        }
+        if ($day == $month - $year) {
+            echo $now . " is a mathematical day! --> " . $day . "=" . $month . "-" . $year . "\n";
+            $endNow = true;
+        }
+        if ($day == -$month + $year) {
+            echo $now . " is a mathematical day! --> " . $day . "=-" . $month . "+" . $year . "\n";
+            $endNow = true;
+        }
+        if ($day == $month * $year) {
+            echo $now . " is a mathematical day! --> " . $day . "=" . $month . "*" . $year . "\n";
+            $endNow = true;
+        }
+        if ($day == $month / $year) {
+            echo $now . " is a mathematical day! --> " . $day . "=" . $month . "/" . $year . "\n";
+            $endNow = true;
+        }
 
         if($findOnlyFirst && $endNow){
             return;
@@ -43,4 +73,4 @@ function getMathDays(DateTime $start, int $iterationDays, bool $findOnlyFirst = 
     }
 }
 
-getMathDays(new DateTime('now'), 1000, true);
+getMathDays(new DateTime('now'), 1000, false);
