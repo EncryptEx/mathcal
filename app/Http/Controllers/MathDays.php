@@ -6,19 +6,16 @@ use Illuminate\Http\Request;
 
 class MathDays extends Controller
 {
-
-
-
     // global variables
     public $endNowIfFirst = false;
     public $mathDays = [];
 
-    /** 
+    /**
      * Function called every time a mathematical day is found.
      * @author EncryptEx
      * @return void
      */
-    function pushMathDay(\DateTime $date, string $mathFormat)
+    public function pushMathDay(\DateTime $date, string $mathFormat)
     {
 
         $timestampDate = date_timestamp_get($date);
@@ -36,12 +33,12 @@ class MathDays extends Controller
     }
 
 
-    /** 
+    /**
      * Retrieves mathematical days from a certain range of dates
      * @author EncryptEx
      * @return array With timestamps as keys and values as arrays of mathematical combinations
      */
-    function getMathDays(\DateTime $start, int $iterationDays, bool $findOnlyFirst = False)
+    public function getMathDays(\DateTime $start, int $iterationDays, bool $findOnlyFirst = false)
     {
         $date = $start;
         $result = [];
