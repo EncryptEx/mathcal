@@ -28,7 +28,7 @@
             <div class="col-6">
                 <h3 class="jumbo">
                     <!-- Formatted date -->
-                    {{ date("l jS \of F Y", $nearest_day_timestamp) }} ({{ date("d/m/y/",$nearest_day_timestamp) }})
+                    {{ date("l jS \of F Y", $nearest_day_timestamp) }} ({{ date("d/m/y",$nearest_day_timestamp) }})
                 </h3>
                 <b>All math combinations are listed here:</b>
                 <ul>
