@@ -19,7 +19,7 @@ Route::get('/', function () {
     $mathdaysclass = new MathDays();
 
     // get the math events of the next 100 days
-    $mathDaysArray = $mathdaysclass->getMathDays($now, 100, false);
+    $mathDaysArray = $mathdaysclass->getMathDays($now, 365, false);
 
     // get the nearest day and remove from total list
     reset($mathDaysArray);
@@ -27,8 +27,12 @@ Route::get('/', function () {
     $nearest_day = $mathDaysArray[$indexTmp];
     unset($mathDaysArray[$indexTmp]);
 
-    $shortDateFormat = Date("d/m/y", $indexTmp);
+    // $shortDateFormat = Date("d/m/y", $indexTmp);
 
 
-    return view('dashboard', ['nearest_day' => $nearest_day, 'shortDateFormat' => $shortDateFormat, 'other_days' => $mathDaysArray]);
+    return view('dashboard', [
+        'nearest_day_options' => $nearest_day,
+        'nearest_day_timestamp' => $indexTmp,
+        'other_days' => $mathDaysArray
+    ]);
 });

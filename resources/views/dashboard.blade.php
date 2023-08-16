@@ -28,18 +28,70 @@
             <div class="col-6">
                 <h3 class="jumbo">
                     <!-- Formatted date -->
-                    {{ $nearest_day[0][0] }}  ({{ $shortDateFormat }})
+                    {{ date("l jS \of F Y", $nearest_day_timestamp) }} ({{ date("d/m/y/",$nearest_day_timestamp) }})
                 </h3>
                 <b>All math combinations are listed here:</b>
-                @foreach ($nearest_day as $mathOption)
-                <p>{{ $mathOption[1] }} </p>
-                @endforeach
+                <ul>
+                    @foreach ($nearest_day_options as $mathOption)
+                    <li>{{ $mathOption }} </li>
+                    @endforeach
+                </ul>
             </div>
             <div class="col-6">
-                countdown here
+                <h3 id="countdown"></h3>
+            </div>
+            <div class="col-12">
+                <h4>Math days in the following year:</h4>
+                <div class="row">
+
+                    @foreach ($other_days as $timestamp =>  $options)
+                    <hr>
+                    <div class="col-12 mb-2">
+                        <b>{{ date("d/m/y", $timestamp) }}</b><br>
+                        @foreach ($options as $option)
+                        <p>{{ $option }}</p>
+                        @endforeach
+                    </div>
+                    @endforeach
+                </div>
+
             </div>
         </div>
     </div>
 </body>
+<script>
+    // Convert timestamp to JS timestamp (miliseconds)
+    var countDownDate = {
+        {
+            $nearest_day_timestamp
+        }
+    }* 1000;
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+        document.getElementById("countdown").innerHTML = "In: " + days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Enjoy the math day!";
+        }
+    }, 1000);
+</script>
 
 </html>

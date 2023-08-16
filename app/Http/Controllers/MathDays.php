@@ -22,14 +22,12 @@ class MathDays extends Controller
     {
 
         $timestampDate = date_timestamp_get($date);
-        $formattedDate = $date->format("l jS \of F Y");
-
         // echo $formattedDate . " is a mathematical day! --> " . $mathFormat . "\n";
 
         // get the array from that day, if none, create one
         $extractArrayFromTimestamp = $this->mathDays[$timestampDate] ?? [];
         // append math data
-        array_push($extractArrayFromTimestamp, [$formattedDate, $mathFormat]);
+        array_push($extractArrayFromTimestamp, $mathFormat);
         // override
         $this->mathDays[$timestampDate] = $extractArrayFromTimestamp;
 
