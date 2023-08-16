@@ -28,7 +28,7 @@
             <div class="col-6">
                 <h3 class="jumbo">
                     <!-- Formatted date -->
-                    {{ $nearest_day[0][0] }}
+                    {{ $nearest_day[0][0] }}  ({{ $shortDateFormat }})
                 </h3>
                 <b>All math combinations are listed here:</b>
                 @foreach ($nearest_day as $mathOption)
