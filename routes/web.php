@@ -23,10 +23,11 @@ Route::get('/', function () {
     
     // get the nearest day and remove from total list
     reset($mathDaysArray);
-    $index = key($mathDaysArray);
-    $nearest_day = $mathDaysArray[$index];
-    // ddd($nearest_day);
-    unset($index);
+    $indexTmp = key($mathDaysArray);
+    $nearest_day = $mathDaysArray[$indexTmp];
+    unset($mathDaysArray[$indexTmp]);
+
+    
     
     return view('dashboard', ['nearest_day' => $nearest_day, 'other_days' => $mathDaysArray]);
 });
