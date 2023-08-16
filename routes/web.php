@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MathDays;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $now = new DateTime('now');
+    $mathdaysclass = new MathDays();
+    
+    // get the math events of the next 100 days
+    $mathDaysArray = $mathdaysclass->getMathDays($now, 100, false);
+    
+    // get the nearest day and remove from total list
+    reset($mathDaysArray);
+    $index = key($mathDaysArray);
+    $nearest_day = $mathDaysArray[$index];
+    // ddd($nearest_day);
+    unset($index);
+    
+    return view('dashboard', ['nearest_day' => $nearest_day, 'other_days' => $mathDaysArray]);
 });
