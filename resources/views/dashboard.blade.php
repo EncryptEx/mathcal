@@ -61,8 +61,8 @@
         </section>
 
         <section class="text-gray-600 body-font">
-            <div class="container px-20 py-24 mx-auto flex flex-wrap">
-                <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9" id="forecast">Other math days in the following year:</h3>
+            <div class="container px-20 pb-24 mx-auto flex flex-wrap">
+                <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9 pt-24" id="forecast">Other math days in the following year:</h3>
                 @foreach ($other_days as $timestamp => $options)
                 <div class="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
                     <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
