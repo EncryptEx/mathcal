@@ -46,7 +46,7 @@
                     </h1>
                     <p class="mb-2 leading-relaxed">Wanna see more?</p>
                     <div class="flex justify-center">
-                        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">See forecast</button>
+                        <a class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" href="#forecast">See forecast</a>
                     </div>
                 </div>
             </div>
@@ -54,6 +54,7 @@
 
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto flex flex-wrap">
+            <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9 ml-100" id="forecast">Other math days in the following year:</h3>
                 @foreach ($other_days as $timestamp => $options)
                 <div class="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
                     <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
