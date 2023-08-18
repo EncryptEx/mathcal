@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $now = new DateTime('now');
+    $now = new DateTime('today midnight');
     $mathdaysclass = new MathDays();
 
     // get the math events of the next 100 days
