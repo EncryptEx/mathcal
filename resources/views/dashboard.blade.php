@@ -13,7 +13,6 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
 </head>
 <header class="text-gray-600 body-font bg-gray-100">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center ">
@@ -30,8 +29,10 @@
     <div class="container mx-auto">
         <section class="text-gray-600 body-font">
             <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                    <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
+                <div class="lg:max-w-lg  lg:w-fullmd:w-1/2 w-5/6 mb-10 md:mb-0">
+                    <h1 id="firstCountdownValue" class="mx-auto title-font mb-0" style="font-size:250px;text-align:center;"></h1>
+                    <h3 id="restCountdownValue" class="mx-auto font-medium text-3xl" style="margin-top:-70px; text-align:center;" :></h3>
+                    <h3 class="mx-auto font-medium text-md" style="text-align:center;" :>till next math-day</h3>
                 </div>
                 <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
                     <h1 class="title-font sm:text-4xl text-3xl mb-0 font-medium text-gray-900">The nearest math-day is at:
@@ -51,10 +52,17 @@
                 </div>
             </div>
         </section>
+        <section class="text-gray-600 body-font">
+            <div class="container px-20">
+                <h2 class="text-3xl my-5 font-medium text-gray-900">What is a <i>"Math-day"</i> ?</h2>
+                <p>A <i>Math-day</i> is a day in which its short date format combines itself creating a perfect mathematical condition.</p>
+                <p>An example is 2/2/04, which can be expressed as 2+2=4, 2*2=4, 2²=4...</p>
+            </div>
+        </section>
 
         <section class="text-gray-600 body-font">
-            <div class="container px-5 py-24 mx-auto flex flex-wrap">
-                <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9 ml-100" id="forecast">Other math days in the following year:</h3>
+            <div class="container px-20 py-24 mx-auto flex flex-wrap">
+                <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9" id="forecast">Other math days in the following year:</h3>
                 @foreach ($other_days as $timestamp => $options)
                 <div class="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
                     <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
@@ -86,14 +94,13 @@
 </body>
 <script>
     // Convert timestamp to JS timestamp (miliseconds)
-    var countDownDate = {
-        {
-            $nearest_day_timestamp
-        }
-    }* 1000;
+    var countDownDate = {{ $nearest_day_timestamp }}* 1000;
 
     // Update the count down every 1 second
-    var x = setInterval(function() {
+    var x = setInterval(reloadCountdown, 1000);
+    reloadCountdown();
+
+    function reloadCountdown() {
 
         // Get today's date and time
         var now = new Date().getTime();
@@ -107,16 +114,28 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+        // display the first value bigger than the rest
+        if (days != 0) {
+            document.getElementById("firstCountdownValue").innerHTML = days + "d";
+            document.getElementById("restCountdownValue").innerHTML = "and " + hours + "h " + minutes + "m " + seconds + "s ";
+        } else if (hours != 0) {
+            document.getElementById("firstCountdownValue").innerHTML = hours + "h";
+            document.getElementById("restCountdownValue").innerHTML = "and " + minutes + "m " + seconds + "s ";
+        } else if (minutes != 0) {
+            document.getElementById("firstCountdownValue").innerHTML = minutes + "m";
+            document.getElementById("restCountdownValue").innerHTML = "and " + seconds + "s ";
+        } else {
+            document.getElementById("firstCountdownValue").innerHTML = seconds + "s";
+            document.getElementById("restCountdownValue").innerHTML = "";
+        }
 
-        document.getElementById("countdown").innerHTML = "In: " + days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
 
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "Enjoy the math day!";
         }
-    }, 1000);
+    }
 </script>
 
 <footer class="text-gray-600 body-font bg-gray-100">
@@ -125,7 +144,7 @@
             <span class="ml-3 text-xl">Mathcal</span>
         </a>
         <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 EncryptEx</p>
-  </div>
+    </div>
 </footer>
 
 </html>
