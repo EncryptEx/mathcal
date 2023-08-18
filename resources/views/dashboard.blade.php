@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    
 </head>
 <header class="text-gray-600 body-font bg-gray-100">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center ">
@@ -54,7 +54,7 @@
 
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto flex flex-wrap">
-            <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9 ml-100" id="forecast">Other math days in the following year:</h3>
+                <h3 class="title-font sm:text-3xl text-2xl font-medium text-gray-900 mb-9 ml-100" id="forecast">Other math days in the following year:</h3>
                 @foreach ($other_days as $timestamp => $options)
                 <div class="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
                     <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
@@ -118,5 +118,14 @@
         }
     }, 1000);
 </script>
+
+<footer class="text-gray-600 body-font bg-gray-100">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <span class="ml-3 text-xl">Mathcal</span>
+        </a>
+        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 EncryptEx</p>
+  </div>
+</footer>
 
 </html>
