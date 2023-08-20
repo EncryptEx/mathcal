@@ -19,7 +19,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
-        KEY: "${{ secrets.SSHKEY }}"
+        KEY: "${{ secrets.KEY }}"
       with:
         source: "."
         target: "${{ secrets.PATH }}"
@@ -27,8 +27,8 @@ jobs:
     - name: Executing remote command
       uses: appleboy/ssh-action@master  
       with:
-        host: ${{ secrets.HOST }}
+        HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: ${{ secrets.SCRIPT }}
+        KEY: ${{ secrets.KEY }}
+        SCRIPT: ${{ secrets.SCRIPT }}
