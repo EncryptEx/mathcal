@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $now = new DateTime('today midnight');
+    $now = new DateTime('yesterday midnight');
     $mathdaysclass = new MathDays();
 
     // get the math events of the next 100 days
     $mathDaysArray = $mathdaysclass->getMathDays($now, 365, false);
 
-    // get the nearest day and remove from total list
+    // get the nearest day and remove from total li// get the nearest day and remove from total list
     reset($mathDaysArray);
     $indexTmp = key($mathDaysArray);
     $nearest_day = $mathDaysArray[$indexTmp];
