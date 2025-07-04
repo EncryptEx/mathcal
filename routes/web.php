@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MathDays;
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $now = new DateTime('yesterday midnight');
+
+    $now = Carbon::parse('yesterday midnight');
     $mathdaysclass = new MathDays();
 
     // get the math events of the next 100 days
