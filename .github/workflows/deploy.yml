@@ -7,27 +7,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Copy repository contents via scp
-      uses: appleboy/scp-action@master
+    - name: Executing remote deploy commands
+      uses: appleboy/ssh-action@v1.2.2  
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
-        key: "${{ secrets.KEY }}"
-        source: "."
-        target: "${{ secrets.PATH }}"
-
-    - name: Executing remote command
-      uses: appleboy/ssh-action@master  
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.key }}
-        script: ${{ secrets.SCRIPT }}
+        key: ${{ secrets.SSHKEY }}
+        script: |
+          cd webs/mathcal.jaumelopez.dev
+          git pull
+          sail up -d --build
+          bash start.sh
